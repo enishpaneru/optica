@@ -1,0 +1,67 @@
+.sidebar-nav {
+   font-family: courier;
+
+    list-style: none;
+    font-size: 1.4em;
+     background-color:gainsboro;
+}
+.container-fluid{
+background-color: #EEEEEE;
+
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111111;
+}
+.hoverone{
+  opacity:1;
+  background: linear-gradient(to right, rgba(196,195,208,0.7), rgba(196,195,208,0));
+  cursor:pointer;
+}
+.hoverone :hover{
+  text-decoration: none;
+
+  opacity:0.4;
+}
+.hoverone a:hover{
+  text-decoration: none;
+
+
+}
+.hover2 :hover{
+  opacity:0.5;
+
+}
+.hover2 a:hover{
+  text-decoration: none;
+
+}
+.next ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: sans-serif;
+    font-size:1.3em;
+    color:red;
+    background-color:#EEEEEE;
+}

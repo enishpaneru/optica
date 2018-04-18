@@ -1,0 +1,30 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <div class="row"><div class="col-sm-4">  <h1 style="clear:right"><u>Booked glasses</u></h1><br></div>
+    <div class="col-sm-4" style="float:right;font-size:1.5em;text-align:right"><p><strong><u>Book Amount Remaining:</u></strong><br>{{remain}}</p></div>
+</div>
+    {% if glass_list %}
+    <div class="row">
+
+      {% for glass in glass_list %}
+
+      <div class="col-sm-3 hover2">
+          <div class="thumbnail" style="background-color:gainsboro;">
+            <a href="{{ glass.get_absolute_url }}"><img src="{{ glass.glass_pic.url }}"  style="width:100%;height:150px;"><div class="caption" style=" background: linear-gradient(to right, rgba(72,60,50,1), rgba(72,60,50,0));">
+                <p style="font-family:rockwell;">Name :  <span style="color:white">{{glass.name}}</span></p><p style="font-family:rockwell;">Brand :  <span style="color:white">{{glass.brand}}</span></p>
+                <p style="font-family:rockwell;">Amount : {%for book in Book_list%}{%if book.glass == glass %} <span style="color:white">{{book.booknovalue}}</span><span>&nbsp on: </span><span style="color:white">{{book.bookdate}}</span>{%endif%}{%endfor%}</p>
+              </div></a>
+
+          </div>
+
+        </div>
+
+      {% endfor %}
+
+</div>
+    {% else %}
+      <p>There are no glasses booked.</p>
+
+    {% endif %}
+{% endblock %}

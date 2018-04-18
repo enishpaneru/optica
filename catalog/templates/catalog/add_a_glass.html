@@ -1,0 +1,12 @@
+{% extends "base_generic_owner.html" %}
+{% block content %}
+<div style="text-align:center"><h1>Add a Glass</h1></div>
+
+    <form enctype="multipart/form-data" action="" method="post">
+        {% csrf_token %}
+<table>{{form}}</table>
+        <input type="submit" value="Done" style="padding:2%;background-color:gainsboro;border-radius:8%;" />
+    </form></div></div></div>
+
+
+{% endblock %}

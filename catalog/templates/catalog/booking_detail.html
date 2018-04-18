@@ -1,0 +1,26 @@
+{% extends "base_generic_owner.html" %}
+
+{% block content %}
+<div style="text-align:center"><h1>Booked Glass Detail</h1></div>
+<div class="row img-rounded" style="background-color:gainsboro"><div class="col-sm-7">
+  <h3><a href="{%url 'user-detail-owner' booking.user.id %}"><span style="font-weight:bold">Booker:</span> {{ booking.user.username }}</a></h3>
+  <h3><a href="{%url 'glass-detail-owner' booking.glass.id %}"><span style="font-weight:bold">Glass:</span> {{ booking.glass.name }}</a></h3>
+  <h3><span style="font-weight:bold">Booked Date:</span> {{ booking.bookdate }}</h3>
+  <h3><span style="font-weight:bold">Booked Amount:</span> {{ booking.booknovalue }}</h3>
+
+
+
+</div>
+
+</div>
+
+
+
+
+
+  <form method="get"><div style="font-size:2em;background:linear-gradient(to right,rgba(220, 220,220,1),rgba(220,220,220,0));width:18%;margin-top:2%;border-radius:5%;"><a name="test" href="{%url 'delete-object' booking.id 'booking'%} "style="color:black;">Delete this booking</a></div></form>
+
+
+
+
+{% endblock %}

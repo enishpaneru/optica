@@ -1,0 +1,105 @@
+{% extends "base_generic_owner.html" %}
+{%load static%}
+{% block content %}
+<div class="col-sm-12 men-wear-right">
+	<!--yo spacing kasari milaune ho?------>
+<h4><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This is the </span>Owner<span>page. </span> </h4>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Here you can control who has access to which areas of the site. You can also view your transactions and rent information.</p>
+</div>
+<!----aru haleko--->
+
+<!--aru end--->
+       <div class="banner_bottom_agile_info">
+	    <div class="container">
+            <div class="banner_bottom_agile_info_inner_w3ls">
+    	           <div class="col-md-6 wthree_banner_bottom_grid_three_left1 grid">
+    	           <a href="{% url 'glassesowner' %}">
+						<figure class="effect-roxy">
+							<img src="{% static 'images/dress1.jpg' %}" alt=" " class="img-responsive" height = 300px width = 600px/>
+							<figcaption>
+								<h3><span>G</span>lasses</h3>
+								<p>Browse Glasses</p>
+							</figcaption>
+						</figure>
+					</a>
+					</div>
+
+					 <div class="col-md-6 wthree_banner_bottom_grid_three_left1 grid">
+					 <a href="{% url 'brandsowner' %}">
+						<figure class="effect-roxy">
+							<img src="{% static 'images/types1.jpg' %}" alt=" " class="img-responsive" />
+							<figcaption>
+								<h3><span>B</span>rands</h3>
+								<p>Browse Brands</p>
+							</figcaption>
+						</figure>
+						</a>
+					</div>
+					<div class="clearfix"></div>
+		    </div>
+		 </div>
+    </div>
+
+    <div class="banner_bottom_agile_info">
+	    <div class="container">
+            <div class="banner_bottom_agile_info_inner_w3ls">
+    	           <div class="col-md-6 wthree_banner_bottom_grid_three_left1 grid">
+    	           <a href="{% url 'users' %}">
+						<figure class="effect-roxy">
+							<img src="{% static 'images/user1.png' %}" alt=" " class="img-responsive" height = 300px width = 600px/>
+							<figcaption>
+								<h3><span>U</span>sers</h3>
+								<p>Browse Users</p>
+							</figcaption>
+						</figure>
+					</a>
+					</div>
+
+					 <div class="col-md-6 wthree_banner_bottom_grid_three_left1 grid">
+					 <a href="{% url 'bookings'%}">
+						<figure class="effect-roxy">
+							<img src="{% static 'images/transactions1.jpg' %}" alt=" " class="img-responsive" />
+							<figcaption>
+								<h3><span>B</span>ookings</h3>
+								<p>Browse current bookings</p>
+							</figcaption>
+						</figure>
+						</a>
+					</div>
+					<div class="clearfix"></div>
+
+
+
+		    </div>
+		 </div>
+    </div>
+
+     <div class="banner_bottom_agile_info">
+	    <div class="container">
+            <div class="banner_bottom_agile_info_inner_w3ls">
+              <div class="col-md-6 wthree_banner_bottom_grid_three_left1 grid">
+   					 <a href="{% url 'ordersowner' 'active' %}">
+   						<figure class="effect-roxy">
+   							<img src="{% static 'images/transactions1.jpg' %}" alt=" " class="img-responsive" />
+   							<figcaption>
+   								<h3><span>O</span>rders</h3>
+   								<p>Browse current orders</p>
+   							</figcaption>
+   						</figure>
+   						</a>
+   					</div>
+                 <div class="col-md-6 wthree_banner_bottom_grid_three_left1 grid">
+    	           <a href="{% url 'ordersowner' 'notactive' %}">
+						<figure class="effect-roxy">
+							<img src="{% static 'images/rentinfo1.jpg' %}" alt=" " class="img-responsive" height = 300px width = 600px/>
+							<figcaption>
+								<h3><span>S</span>ales Information</h3>
+								<p>Browse Sales Information</p>
+							</figcaption>
+						</figure>
+					</a>
+					</div>
+
+
+    </div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+    <div style="font-family:courier;"><h1 style="text-align:center"><strong>Please enter valid credentials.</strong></h1></div>
+    {% endif %}
+{% endif %}
+<div style="padding-left:40%;padding-top:5%;font-family:courier;"><div class="img-rounded" style="width:40%;height:auto;background-color:rgb(140,140,140);text-align:center;">
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+
+<div style="width:100%;padding:2%;">
+<div style="width:100%">  <td>{{ form.username.label_tag }}</td></div>
+  <div style="width:100%"><td style="width:100%;">{{ form.username }}</td></div>
+</div>
+<div style="width:100%;padding:2%;">
+  <div style="width:100%"> <td>{{ form.password.label_tag }}</td></div>
+<div style="width:100%">  <td>{{ form.password }}</td></div>
+</div>
+
+<div style="width:100%;padding:5%;">
+  <input type="submit" value="login" style="padding:2%;background-color:gainsboro;border-radius:8%;" />
+  <input type="hidden" name="next" value="" />
+</div>
+</form>
+
+{# Assumes you setup the password_reset view in your URLconf #}
+<div class="img-rounded" style="height:15%;background:rgb(179,172,172);"><p style="color:black"><a href="{% url 'password_reset' %}">Lost password?</a></p></div>
+</div>
+</div>
+{% endblock %}

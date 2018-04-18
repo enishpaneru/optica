@@ -1,0 +1,52 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="row img-rounded" style="background-color:gainsboro">
+<div class="col-sm-7" >  <h1>Name: {{ brand.name }} </h1>
+
+
+  <p><strong>Details:</strong> {{ brand.detail }}</p>
+</div>
+<div class="col-sm-5">
+<img src="{{brand.brand_pic.url}}" style="background:radial-gradient(ellipse,rgba(72, 60, 50,1),rgba(72, 60, 50,0));width:100%;height:auto">
+</div>
+</div>
+<hr style="border:2px solid white ">
+<div class="row">
+  <p style="text-align:center;font-size:1.5em;"><strong><u>Glasses with this brand</u></strong></p>
+      {% for glass in glass_list %}
+
+  <div class="col-sm-3 hover2">
+      <div class="thumbnail" style="background-color:gainsboro;">
+        <a href="{{ glass.get_absolute_url }}"><img src="{{ glass.glass_pic.url }}"  style="width:100%;height:150px;"><div class="caption" style=" background: linear-gradient(to right, rgba(72,60,50,1), rgba(72,60,50,0));">
+            <p style="font-family:rockwell;">Name :  <span style="color:white">{{glass.name}}</span></p><p style="font-family:rockwell;">Brand :  <span style="color:white">{{glass.brand}}</span></p>
+          </div></a>
+
+      </div>
+
+    </div>
+      {% endfor %}
+
+</div>
+{% if glass_list.has_other_pages %}
+  <ul class="pagination">
+    {% if glass_list.has_previous %}
+      <li><a href="?page={{ glass_list.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in glass_list.paginator.page_range %}
+      {% if glass_list.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if glass_list.has_next %}
+      <li><a href="?page={{ glass_list.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+{% endblock %}

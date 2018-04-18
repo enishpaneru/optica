@@ -1,0 +1,21 @@
+{% extends "base_generic_owner.html" %}
+
+{% block content %}
+<div class="next" style="padding-top:5%;padding-left:35%;padding-right:25%;font-family:courier;">
+<div class="img-rounded" style="width:250px;height:auto;background-color:#c7bebe;text-align:center;">
+<form  action="" method="post">
+    {% csrf_token %}
+    <div style="padding:3%">
+      <div style="width:100%"> <td>{{ form.username.label_tag }}{{ form.username }}</td></div>
+        <div style="width:100%"><td style="width:100%;">{{ form.first_name.label_tag }}{{ form.first_name }}</td></div>
+          <div style="width:100%"><td style="width:100%;">{{ form.last_name.label_tag }}{{ form.last_name }}</td></div>
+<div style="width:100%"><td style="width:100%;" >{{ form.is_superuser.label_tag }}{{ form.is_superuser}}</td></div>
+          <div>{%for key,value in form.errors.items %}{{value}}{%endfor%}</div>
+
+    </div>
+
+    <input type="submit" value="Submit" />
+
+</form>
+</div></div>
+{% endblock %}

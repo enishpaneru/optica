@@ -1,0 +1,62 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div >
+<form method="GET" action="{% url 'brands' %}">
+{% csrf_token %}
+
+<div style="text-align:right;">
+
+
+  <td><input type="text"  name="search"/></td>
+
+  <input type="submit" value="search" />
+
+</div>
+</form></div>
+<br>
+
+
+    {% if brand_list %}
+
+<div class="row">
+      {% for brand in brand_list %}
+
+  <div class="col-sm-3 hover2">
+      <div class="thumbnail" style="background-color:gainsboro;">
+        <a href="{{ brand.get_absolute_url }}"><img src="{{ brand.brand_pic.url }}"  style="width:100%;height:150px;"><div class="caption" style="background: linear-gradient(to right, rgba(72,60,50,1), rgba(72,60,50,0));">
+            <p style="font-family:rockwell;">Name :  <span style="color:white">{{brand.name}}</span></p>
+          </div></a>
+
+      </div>
+
+    </div>
+      {% endfor %}
+
+</div>
+    {% else %}
+      <p>There are no brands in the store.</p>
+    {% endif %}
+
+  {% if brand_list.has_other_pages %}
+    <ul class="pagination">
+      {% if brand_list.has_previous %}
+        <li><a href="?page={{ brand_list.previous_page_number }}">&laquo;</a></li>
+      {% else %}
+        <li class="disabled"><span>&laquo;</span></li>
+      {% endif %}
+      {% for i in brand_list.paginator.page_range %}
+        {% if brand_list.number == i %}
+          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+        {% else %}
+          <li><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+      {% endfor %}
+      {% if brand_list.has_next %}
+        <li><a href="?page={{ brand_list.next_page_number }}">&raquo;</a></li>
+      {% else %}
+        <li class="disabled"><span>&raquo;</span></li>
+      {% endif %}
+    </ul>
+  {% endif %}
+{% endblock %}

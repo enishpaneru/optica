@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h3>Not Read</h3>
+{% for notice in notread%}
+<u><p>Recieved  {{notice.timesince}} ago</p></u>
+<p>{{notice.verb}}<a href="{%url 'orderdetailsuser' notice.actor.id %}">{{notice.actor}}</a></p>
+<hr>
+{%endfor%}
+<br>
+<h3>Read</h3>
+{% for notice in read%}
+<u><p>Recieved  {{notice.timesince}} ago</p></u>
+<p>{{notice.verb}}<a href="{%url 'orderdetailsuser' notice.actor.id %}">{{notice.actor}}</a> </p>
+<hr>
+{%endfor%}
+<br>
+<a href="?clear=True">clear all</a>&nbsp&nbsp&nbsp&nbsp&nbsp<a href="?read=True">Mark all as read</a>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <div class="row"><div class="col-sm-4">  <h1 style="clear:right"><u>My cart</u></h1><br></div>
+    <div class="col-sm-4" style="float:right;font-size:1.5em;text-align:right"><p><strong><u>Sub Total:</u></strong><br>{{total}}</p></div>
+</div>
+    {% if disp_list %}
+    <div class="row">
+
+      {% for glass in disp_list %}
+
+      <div class="col-sm-3 hover2">
+          <div class="thumbnail" style="background-color:gainsboro;">
+            <a href="{{ glass.get_absolute_url }}"><img src="{{ glass.glass_pic.url }}"  style="width:100%;height:150px;"><div class="caption" style=" background: linear-gradient(to right, rgba(72,60,50,1), rgba(72,60,50,0));">
+                <p style="font-family:rockwell;">Name :  <span style="color:white">{{glass.name}}</span></p><p style="font-family:rockwell;">Brand :  <span style="color:white">{{glass.brand}}</span></p>
+                <p style="font-family:rockwell;">Amount : {%for glassobj,buyno in disp_list.items%}{%ifequal glassobj glass%} <span style="color:white">{{buyno}}</span>{%endifequal%}{%endfor%}</p>
+              </div></a>
+              <a href="{% url 'delcart' glass.id%}">delete</a>
+          </div>
+
+        </div>
+
+      {% endfor %}
+
+</div>
+<div style="font-size:2em;background:linear-gradient(to right,rgba(220, 220,220,1),rgba(220,220,220,0));width:18%;margin-top:2%;border-radius:5%;"><a href="{%url 'orderconfirm'%}"style="color:black;">Order these items</a></div>
+
+    {% else %}
+      <p>There are no glasses in cart.</p>
+
+    {% endif %}
+{% endblock %}

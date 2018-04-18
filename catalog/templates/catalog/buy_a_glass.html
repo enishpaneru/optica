@@ -1,0 +1,25 @@
+{% extends "base_generic.html" %}
+{% block content %}
+
+{%if prebook == 0%}
+<h1 style="text-align:center">You already have a booking with this glass<br>Try Another glass instead</h1>
+<ul style="display:inline;"><li style="background-color:gainsboro;transform:translate(600%,0%)" ><a href="{{request.META.HTTP_REFERER}}">Go back</a></li></ul>
+{%else%}
+    <div  style="padding-left:25%;padding-right:25%;"><div class="img-rounded" style="background-color:rgb(140,140,140);width:350px;padding-bottom:5%;padding-top:2%;"><h1 style="text-align:center"><strong><u>Glass name</u></strong></h1><p style="text-align:center"><b>{{glass.name}}</b></p>
+
+<div class="next" style="padding-top:5%;padding-left:15%;padding-right:25%;font-family:courier;">
+<div class="img-rounded" style="width:250px;height:auto;background-color:#c7bebe;text-align:center;">
+    <form action="" method="post">
+        {% csrf_token %}
+      <div style="padding:3%">
+        <div style="width:100%"> <td>{{ form.Buyno.label_tag }}</td></div>
+          <div style="width:100%"><td style="width:100%;">{{ form.Buyno }}</td></div>
+            <div style="width:100%"><td style="width:100%;">{{ form.Buyno.help_text }}</td></div>
+            <div>{%for key,value in form.errors.items %}{{value}}{%endfor%}</div>
+
+      </div>
+        <input type="submit" value="Book" style="padding:2%;background-color:gainsboro;border-radius:8%;" />
+    </form></div></div></div>
+{%endif%}
+
+{% endblock %}

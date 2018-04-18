@@ -1,0 +1,10 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div>Hello : {{user.username}}</div>
+<div><a href="{% url 'my-booked' %}">My Booked</a></div>
+<div><a href="{% url 'my-ordered' %}">My Order</a></div>
+<div><a href="{% url 'userinfochange'%}">Change my info </a></div>
+<div><a href="{% url 'password_reset' %}">Reset Password</a></div>
+<div><a href="{% url 'shownotifications' %}">Notifications : {{notcount}}</a></div>
+{% endblock %}

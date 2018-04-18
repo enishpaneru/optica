@@ -1,0 +1,68 @@
+{% extends "base_generic_owner.html" %}
+
+{% block content %}
+
+
+{% if order_list %}
+
+    <div class="bs-docs-example">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+
+                            <th>Order ID</th>
+
+              <th>User</th>
+              <th>Order Date</th>
+              <th>Total Amount</th>
+              <th></th>
+              {% if order.active is True %}
+              <th></th>{%endif%}
+            </tr>
+          </thead>
+          <tbody>
+            {% for order in order_list %}<tr>
+
+              <td><a href="{%url 'orderdetailsowner' order.id %}">{{order.id}}</a></td>
+              <td><a href="{%url 'user-detail-owner' order.user.id %}">{{order.user}}</a></td>
+              <td>{{order.orderdate}}</td>
+              <td>{{order.amount}}</td>
+                {% if order.active is True %}
+              <td><a name="test" href="{%url 'order-complete' order.id %} ">Complete</a></td>{%endif%}
+              <td>  <a name="test" href="{%url 'delete-object' order.id 'order'%} ">Delete</a>
+</td>
+
+            </tr>
+{% endfor %}
+
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+        <p>There are no orders.</p>
+      {% endif %}
+
+
+
+  {% if order_list.has_other_pages %}
+    <ul class="pagination">
+      {% if order_list.has_previous %}
+        <li><a href="?page={{ order_list.previous_page_number }}">&laquo;</a></li>
+      {% else %}
+        <li class="disabled"><span>&laquo;</span></li>
+      {% endif %}
+      {% for i in order_list.paginator.page_range %}
+        {% if order_list.number == i %}
+          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+        {% else %}
+          <li><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+      {% endfor %}
+      {% if order_list.has_next %}
+        <li><a href="?page={{ order_list.next_page_number }}">&raquo;</a></li>
+      {% else %}
+        <li class="disabled"><span>&raquo;</span></li>
+      {% endif %}
+    </ul>
+  {% endif %}
+{% endblock %}

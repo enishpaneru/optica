@@ -1,0 +1,38 @@
+{% extends "base_generic_owner.html" %}
+
+{% block content %}
+<div class="row img-rounded" style="background-color:gainsboro"><div class="col-sm-7">
+  <h1>Name: {{ glass.name }}</h1>
+
+  <p><strong>brand:</strong> <a href="{% url 'brand-detail' glass.brand.pk%}" style="color:black;">{{ glass.brand }}</a></p> <!-- author detail link not yet defined -->
+  <p><strong>Details:</strong> {{ glass.detail }}</p>
+  <p><strong>Price:</strong>Rs. {{ glass.price }}</p>
+</div>
+<div class="col-sm-5">
+  <img src="{{glass.glass_pic.url}}" style="background:radial-gradient(ellipse,rgba(72, 60, 50,1),rgba(72, 60, 50,0));width:100%;">
+</div>
+</div>
+
+
+
+
+<form method="get"><div style="font-size:2em;background:linear-gradient(to right,rgba(220, 220,220,1),rgba(220,220,220,0));width:18%;margin-top:2%;border-radius:5%;"><a name="test" href="{%url 'editglass' glass.id%} "style="color:black;">edit this glass</a></div></form>
+
+  <form method="get"><div style="font-size:2em;background:linear-gradient(to right,rgba(220, 220,220,1),rgba(220,220,220,0));width:18%;margin-top:2%;border-radius:5%;"><a name="test" href="{%url 'delete-object' glass.id 'glass'%} "style="color:black;">Delete this glass</a></div></form>
+  <div style="font-size:2em;background:linear-gradient(to right,rgba(220, 220,220,1),rgba(220,220,220,0));width:18%;margin-top:2%;border-radius:5%;"><a href="{{glass.get_absolute_url}}/buy "style="color:black;">Add to cart</a></div>
+
+
+
+  <hr style="border:2px solid grey ">
+  <div style="margin-left:20px;margin-top:20px">
+    <h4><strong>Pieces</strong></h4>
+    <p>Number of pieces:{{glass.glassinstance_set.all.count}}</p>
+
+    {% for copy in glass.glassinstance_set.all %}
+    <hr style="border:1px solid grey ">
+
+    <p><strong>Imprint:</strong> {{copy.imprint}}</p>
+    <p class="text-muted"><strong>Id:</strong> {{copy.id}}</p>
+    {% endfor %}
+  </div>
+{% endblock %}

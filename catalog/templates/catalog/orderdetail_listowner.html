@@ -1,0 +1,64 @@
+
+{% extends "base_generic_owner.html" %}
+
+
+{% block content %}
+
+
+{% if orderdetail_list %}
+
+    <div class="bs-docs-example">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+
+                            <th>User</th>
+
+              <th>Glass</th>
+              <th>Ordered Amount</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            {% for orderdetail in orderdetail_list %}<tr>
+
+
+              <td><a href="{%url 'user-detail-owner' orderdetail.orderuser.user.id %}">{{orderdetail.orderuser.user}}</a></td>
+              <td><a href="{%url 'glass-detail-owner' orderdetail.glass.id %}">{{orderdetail.glass.name}}</a></td>
+
+              <td>{{orderdetail.orderno}}</td>
+
+            </tr>
+{% endfor %}
+
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+        <p>There are no orderdetails.</p>
+      {% endif %}
+
+
+
+  {% if orderdetail_list.has_other_pages %}
+    <ul class="pagination">
+      {% if orderdetail_list.has_previous %}
+        <li><a href="?page={{ orderdetail_list.previous_page_number }}">&laquo;</a></li>
+      {% else %}
+        <li class="disabled"><span>&laquo;</span></li>
+      {% endif %}
+      {% for i in orderdetail_list.paginator.page_range %}
+        {% if orderdetail_list.number == i %}
+          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+        {% else %}
+          <li><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+      {% endfor %}
+      {% if orderdetail_list.has_next %}
+        <li><a href="?page={{ orderdetail_list.next_page_number }}">&raquo;</a></li>
+      {% else %}
+        <li class="disabled"><span>&raquo;</span></li>
+      {% endif %}
+    </ul>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "base_generic_owner.html" %}
+
+{% block content %}
+<div><a href="{% url 'user_create'%}">Add user</a></div>
+<div >
+<form method="GET" action="{% url 'users' %}">
+{% csrf_token %}
+
+<div style="text-align:right;">
+
+
+  <td><input type="text"  name="search"/></td>
+
+  <input type="submit" value="search" />
+
+</div>
+</form></div>
+<br>
+
+
+    {% if user_list %}
+
+<div class="row">
+      {% for user in user_list %}
+
+  <div class="col-sm-3 hover2">
+      <div class="thumbnail" style="background-color:gainsboro;">
+        <a href="{%url 'user-detail-owner' user.id %}"><div class="caption" style="background: linear-gradient(to right, rgba(72,60,50,1), rgba(72,60,50,0));">
+            <p style="font-family:rockwell;">Name :  <span style="color:white">{{user.username}}</span></p>
+          </div></a>
+
+      </div>
+
+    </div>
+      {% endfor %}
+
+</div>
+    {% else %}
+      <p>There are no users in the store.</p>
+    {% endif %}
+
+  {% if user_list.has_other_pages %}
+    <ul class="pagination">
+      {% if user_list.has_previous %}
+        <li><a href="?page={{ user_list.previous_page_number }}">&laquo;</a></li>
+      {% else %}
+        <li class="disabled"><span>&laquo;</span></li>
+      {% endif %}
+      {% for i in user_list.paginator.page_range %}
+        {% if user_list.number == i %}
+          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+        {% else %}
+          <li><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+      {% endfor %}
+      {% if user_list.has_next %}
+        <li><a href="?page={{ user_list.next_page_number }}">&raquo;</a></li>
+      {% else %}
+        <li class="disabled"><span>&raquo;</span></li>
+      {% endif %}
+    </ul>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div style="text-align:right">
+<form method="GET" action="{% url 'glassessearch' %}">
+{% csrf_token %}
+
+<div>
+
+  <td><input type="text" name="search" value="{{searchvalue}}" /></td>
+
+  <input type="submit" value="search" />
+
+
+</div>
+</form>
+</div>
+<br>
+
+    {% if glass_list %}
+
+<div class="row">
+      {% for glass in glass_list %}
+
+  <div class="col-sm-3 hover2" >
+      <div class="thumbnail" style="background-color:gainsboro;">
+        <a href="{{ glass.get_absolute_url }}"><img src="{{ glass.glass_pic.url }}"  style="width:100%;height:150px;"><div class="caption" style=" background: linear-gradient(to right, rgba(72,60,50,1), rgba(72,60,50,0));">
+           <div style="height:10%">  <p style="font-family:rockwell;">Name :  <span style="color:white">{{glass.name}}</span></p></div><p style="font-family:rockwell;">Brand :  <span style="color:white">{{glass.brand}}</span></p>
+            <p style="font-family:rockwell;">Price :  <span style="color:white">Rs {{glass.price}}</span></p>
+
+          </div></a>
+
+      </div>
+
+    </div>
+      {% endfor %}
+
+</div>
+    {% else %}
+      <p>There are no glasses in the store.</p>
+    {% endif %}
+    {% if glass_list.has_other_pages  %}
+      <ul class="pagination">
+        {% if glass_list.has_previous %}
+          <li><a href="?page={{ glass_list.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+        {% for i in glass_list.paginator.page_range %}
+          {% if glass_list.number == i %}
+            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+          {% else %}
+            <li><a href="?page={{ i }} ">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if glass_list.has_next %}
+          <li><a href="?page={{ glass_list.next_page_number }}">&raquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+      </ul>
+    {% endif %}
+{% endblock %}

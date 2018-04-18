@@ -1,0 +1,13 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Confirm Order</h1>
+
+<p>Are you sure you want to order these items?</p>
+
+<form action="{%url 'ordercomplete'%}" method="POST">
+  {% csrf_token %}
+  <input type="submit" value="Yes, confirm." />
+</form>
+
+{% endblock %}

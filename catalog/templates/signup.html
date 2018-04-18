@@ -1,0 +1,47 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+						<div class="modal-body modal-body-sub_agile">
+						<div class="col-md-8 modal_body_left modal_body_left1">
+						<h3 class="agileinfo_sign">Sign Up <span>Now</span></h3>
+						 <form method="post">
+                 {% csrf_token %}
+                 {% for field in form %}
+							<div class="styled-input agile-styled-input-top">
+
+								  {{ field }}
+								<label>{{ field.label_tag }}</label>
+								<span></span>
+                {% if field.help_text %}
+                  <small style="display: none">{{ field.help_text }}</small>
+                {% endif %}
+                {% for error in field.errors %}
+                  <p style="color: red">{{ error }}</p>
+                {% endfor %}
+							</div>
+              {% endfor %}
+
+							<input type="submit" value="Sign Up">
+
+						</form>
+
+														<div class="clearfix"></div>
+														<p>By clicking Sign Up, I agree to your terms</a>
+
+						</div>
+
+						<div class="clearfix"></div>
+					</div>
+				</div>
+				<!-- //Modal content-->
+
+{%endblock%}
+<!-- //Modal2 -->

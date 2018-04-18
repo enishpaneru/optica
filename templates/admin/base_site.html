@@ -1,0 +1,70 @@
+{% extends "admin/base.html" %}
+
+{% block title %}ADMIN OPTICA{% endblock %}
+{%block extrastyle %}
+<style>
+#header{
+  background-color: rgb(140,140,140);
+
+  font-family: courier;
+}
+.submit-row input{
+  background-color: rgb(140,140,140);
+
+}
+#changelist .actions{
+  background-color: rgb(140,140,140) !important;
+  color:black !important;
+}
+#result_list tr{
+  background-color: rgb(214,210,210) !important;
+}
+#changelist .results{
+  background-color: rgb(214,210,210) !important;
+}
+#changelist .paginator{
+  background-color: rgb(214,210,210) !important;
+}
+#content-related{
+  background-color: rgb(214,210,210);
+
+}
+.module{
+  font-family: courier;
+
+  background-color: gainsboro;
+}
+.module caption{
+  font-size:25px;
+ text-align:center;
+  background-color: gainsboro;
+}
+#content{
+  font-family:courier;
+
+}
+#container{
+  background-color: gainsboro;
+
+}
+
+.app-catalog{
+  background-color: gainsboro;
+}
+.dashboard{
+  background-color: gainsboro;
+}
+div.breadcrumbs{
+  background-color: rgb(140,140,140);
+}
+.module caption{
+  background-color: rgb(140,140,140);
+}
+</style>
+{% endblock %}
+{% block branding %}
+<h1 id="site-name" ><a href="{% url 'admin:index' %}">OPTICA ADMIN</a></h1>
+{% endblock %}
+{% block content_title %}<h1 style="text-align:center;font-size:1.7em;">Manage Your Store</h1>{% endblock %}
+
+{% block nav-global %}{% endblock %}

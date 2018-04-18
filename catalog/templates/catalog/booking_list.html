@@ -1,0 +1,61 @@
+{% extends "base_generic_owner.html" %}
+
+{% block content %}
+
+<div style="text-align:center"><h1>Booked Glasses</h1></div>
+{% if booking_list %}
+
+    <div class="bs-docs-example">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+
+                            <th>booking ID</th>
+                            <th>Glass</th>
+              <th>Booker</th>
+              <th>Booking Date</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            {% for booking in booking_list %}<tr>
+
+              <td><a href="{%url 'booking-detail' booking.id %}">{{booking.id}}</a></td>
+                            <td><a href="{%url 'glass-detail-owner' booking.glass.id %}">{{booking.glass.name}}</a></td>
+              <td><a href="{%url 'user-detail-owner' booking.user.id %}">{{booking.user}}</a></td>
+              <td>{{booking.bookdate}}</td>
+
+            </tr>
+{% endfor %}
+
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+        <p>There are no bookings.</p>
+      {% endif %}
+
+
+
+  {% if booking_list.has_other_pages %}
+    <ul class="pagination">
+      {% if booking_list.has_previous %}
+        <li><a href="?page={{ booking_list.previous_page_number }}">&laquo;</a></li>
+      {% else %}
+        <li class="disabled"><span>&laquo;</span></li>
+      {% endif %}
+      {% for i in booking_list.paginator.page_range %}
+        {% if booking_list.number == i %}
+          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+        {% else %}
+          <li><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+      {% endfor %}
+      {% if booking_list.has_next %}
+        <li><a href="?page={{ booking_list.next_page_number }}">&raquo;</a></li>
+      {% else %}
+        <li class="disabled"><span>&raquo;</span></li>
+      {% endif %}
+    </ul>
+  {% endif %}
+{% endblock %}
